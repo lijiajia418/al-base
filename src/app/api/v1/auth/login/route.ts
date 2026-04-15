@@ -1,5 +1,5 @@
 import { AuthService } from "@/domains/auth/auth-service";
-import { success, error, ErrorCode } from "@/lib/api/response";
+import { success, error, ErrorCode, type ErrorCodeValue } from "@/lib/api/response";
 
 const authService = new AuthService();
 
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
   const result = await authService.login(phone, code, DEFAULT_SCHOOL_ID);
 
   if (!result.success) {
-    const errorMap: Record<string, { code: number; status: number; message: string }> = {
+    const errorMap: Record<string, { code: ErrorCodeValue; status: number; message: string }> = {
       WRONG_CODE: { code: ErrorCode.WRONG_CODE, status: 401, message: "验证码错误" },
       CODE_EXPIRED: { code: ErrorCode.CODE_EXPIRED, status: 401, message: "验证码已过期" },
       SMS_LOCKED: { code: ErrorCode.SMS_LOCKED, status: 429, message: "验证失败次数过多，请稍后再试" },
