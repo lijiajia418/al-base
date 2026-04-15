@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-jakarta), "Inter", "Noto Sans SC", system-ui,
+    -apple-system, sans-serif;
+
+  --color-primary: #F97066;
+  --color-secondary: #38BDF8;
+  --color-background: #FFFBF7;
+  --color-foreground: #1C1917;
+  --color-border: #F5F0EB;
+  --color-muted: #78716C;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+}

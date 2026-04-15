@@ -1,0 +1,55 @@
+# Feature 状态追踪
+# SDD-Lite 流程
+
+feature: F-001-azure-display-mode
+name: "Azure 发音评测展示模式优化"
+status: completed
+created: 2026-04-02
+updated: 2026-04-02
+
+
+sdd_lite: true
+
+# SDD 阶段进度（Lite: 跳过 group-stories / design-arch / design-domain）
+phases:
+  feature_overview: done
+  story_grouping: null
+  user_stories: done
+  behaviors: null
+  acceptance_tests: done
+  ui_design: pending
+  architecture: null
+  domain_design: null
+  task_planning: done
+  implementation: done
+  code_review: done
+  validation: done
+
+current_phase: completed
+
+approvals:
+  requirements: true
+  ui_design: null
+  design: false
+  tasks: true
+
+sprint: 1
+current_task: add-provider-mode-badge
+progress:
+  total_tasks: 5
+  completed_tasks: 5
+
+team_mode: false
+team_name: null
+
+blockers: []
+
+notes: "SDD-Lite 路径：无新 Domain、无架构变更、仅前端展示层改动"
+
+history:
+  - timestamp: "2026-04-02T00:00:00Z"
+    action: created
+    notes: "Feature 创建，SDD-Lite 路径"
+  - timestamp: "2026-04-02T00:00:00Z"
+    action: feature_overview_done
+    notes: "Feature 概述完成（对话中收集）"

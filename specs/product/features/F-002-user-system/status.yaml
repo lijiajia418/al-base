@@ -1,0 +1,102 @@
+# Feature 状态追踪
+
+feature: F-002-user-system
+name: "用户体系（认证、角色、权限、组织管理）"
+status: active
+created: 2026-04-09
+updated: 2026-04-09
+
+sdd_lite: false
+
+phases:
+  feature_overview: done        # 已有完整设计文档
+  story_grouping: pending
+  user_stories: pending
+  behaviors: pending
+  acceptance_tests: pending
+  ui_design: pending
+  architecture: done            # 已有 user-system-design.md
+  domain_design: done           # 已有 api-design.md + database-schema.md
+  task_planning: self-checked   # 26 tasks in sprint-2
+  implementation: done
+  code_review: done
+  validation: done
+
+current_phase: completed
+
+approvals:
+  requirements: true
+  ui_design: null               # UI 后续单独设计
+  design: true                  # 设计已完成并 review
+  tasks: false
+
+sprint: 2
+current_task: null
+progress:
+  total_tasks: 26
+  completed_tasks: 26
+
+checkpoint:
+  current_task: "implement-user-profile-api"
+  current_phase: "red"
+  completed_tasks:
+    - setup-redis-client
+    - setup-api-response
+    - implement-sms-service
+    - implement-token-service
+    - implement-auth-service
+    - implement-auth-interceptor
+    - implement-role-injector
+    - implement-permission-guard
+    - implement-sms-code-api
+    - implement-login-api
+    - implement-logout-api
+    - implement-me-api
+    - implement-switch-role-api
+    - implement-school-service
+    - implement-teacher-service
+    - implement-class-service
+    - implement-student-service
+    - implement-parent-service
+    - implement-role-permission-service
+  blocked_tasks: []
+  test_command: "npx vitest run"
+  env_info: "node 22.18.0, vitest 4.1.2, drizzle-orm, ioredis"
+  last_updated: "2026-04-09 13:05"
+
+team_mode: false
+team_name: null
+
+blockers: []
+
+notes: |
+  设计阶段已在对话中完成多轮 review，产出：
+  - docs/user-system-design.md v2.2（认证、角色、权限三层模型、12张表）
+  - docs/api-design.md v1.2（35个API、8个模块）
+  - docs/database-schema.md v2.0（完整DDL、种子数据）
+  表结构和 Drizzle schema 已落地到 PostgreSQL。
+  下一步：plan-tasks 拆实现任务。
+
+related_docs:
+  - docs/A-Level 国际高中雅思课后 AI 教练系统.md    # 产品全景
+  - docs/user-system-design.md                       # 系统设计
+  - docs/api-design.md                               # API 设计
+  - docs/database-schema.md                          # 数据库 Schema
+  - docs/用户体系全景.md                              # 早期数据模型（已被 user-system-design.md 替代）
+
+history:
+  - timestamp: "2026-04-06T00:00:00Z"
+    action: backlog_created
+    notes: "Backlog 条目创建（specs/backlog/user-system-auth-management.md）"
+  - timestamp: "2026-04-07T00:00:00Z"
+    action: design_started
+    notes: "用户体系系统设计启动，产出 user-system-design.md v2.0"
+  - timestamp: "2026-04-08T00:00:00Z"
+    action: design_reviewed
+    notes: "需求澄清（手机号独立、家庭模式v2、家长只读、管理员运营初始化），数据库设计 review 完成"
+  - timestamp: "2026-04-09T00:00:00Z"
+    action: design_completed
+    notes: "权限体系升级（teacher_roles + permissions），API 设计完成（35个），Drizzle schema + PostgreSQL 已同步"
+  - timestamp: "2026-04-09T00:00:00Z"
+    action: feature_created
+    notes: "纳入 SDD 流程管理，设计阶段标记为 done，准备进入 plan-tasks"

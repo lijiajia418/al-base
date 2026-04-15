@@ -1,0 +1,12 @@
+export { schools } from "./schools";
+export { users } from "./users";
+export { teacherProfiles } from "./teacher-profiles";
+export { studentProfiles } from "./student-profiles";
+export { parentProfiles } from "./parent-profiles";
+export { classes } from "./classes";
+export { classTeachers } from "./class-teachers";
+export { classStudents } from "./class-students";
+export { parentStudentRelations } from "./parent-student-relations";
+export { teacherRoles } from "./teacher-roles";
+export { permissions } from "./permissions";
+export { teacherRolePermissions } from "./teacher-role-permissions";
