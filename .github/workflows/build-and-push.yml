@@ -7,7 +7,8 @@ on:
 
 env:
   REGISTRY: crpi-buaqivjka8w29qys.cn-hangzhou.personal.cr.aliyuncs.com
-  IMAGE_NAME: al-base
+  NAMESPACE: vincent418
+  IMAGE_NAME: vincent418_repo
 
 jobs:
   build-and-push:
@@ -32,9 +33,9 @@ jobs:
         run: |
           SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
           TIMESTAMP=$(date +%Y%m%d%H%M%S)
-          echo "tag_latest=${REGISTRY}/${IMAGE_NAME}:latest" >> $GITHUB_OUTPUT
-          echo "tag_sha=${REGISTRY}/${IMAGE_NAME}:${SHORT_SHA}" >> $GITHUB_OUTPUT
-          echo "tag_ts=${REGISTRY}/${IMAGE_NAME}:${TIMESTAMP}" >> $GITHUB_OUTPUT
+          echo "tag_latest=${REGISTRY}/${NAMESPACE}/${IMAGE_NAME}:latest" >> $GITHUB_OUTPUT
+          echo "tag_sha=${REGISTRY}/${NAMESPACE}/${IMAGE_NAME}:${SHORT_SHA}" >> $GITHUB_OUTPUT
+          echo "tag_ts=${REGISTRY}/${NAMESPACE}/${IMAGE_NAME}:${TIMESTAMP}" >> $GITHUB_OUTPUT
 
       - name: Build and push
         uses: docker/build-push-action@v5
