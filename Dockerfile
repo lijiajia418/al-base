@@ -2,13 +2,7 @@
 # Multi-stage build for al-base (Next.js + Custom Server + WebSocket)
 # ============================================================
 
-# Stage 1: Install dependencies
-FROM node:22-alpine AS deps
-WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
-
-# Stage 2: Build
+# Stage 1: Build
 FROM node:22-alpine AS builder
 WORKDIR /app
 COPY package.json package-lock.json ./
@@ -16,7 +10,7 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# Stage 3: Production
+# Stage 2: Production
 FROM node:22-alpine AS runner
 WORKDIR /app
 
@@ -27,10 +21,10 @@ ENV PORT=3000
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
-# 从 deps 阶段复制生产依赖
-COPY --from=deps /app/node_modules ./node_modules
+# 复制完整 node_modules（tsx/typescript 是运行时需要的）
+COPY --from=builder /app/node_modules ./node_modules
 
-# 从 builder 阶段复制构建产物
+# 复制构建产物和源码
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/server.ts ./server.ts
@@ -44,5 +38,4 @@ USER nextjs
 
 EXPOSE 3000
 
-# 使用 tsx 运行自定义 server（包含 WebSocket）
 CMD ["npx", "tsx", "server.ts"]
