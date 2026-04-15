@@ -1,6 +1,6 @@
 import { withAuth } from "@/lib/auth/auth-interceptor";
 import { ParentService } from "@/domains/parent/parent-service";
-import { success, error, ErrorCode } from "@/lib/api/response";
+import { success, error, ErrorCode, type ErrorCodeValue } from "@/lib/api/response";
 
 const parentService = new ParentService();
 
@@ -30,7 +30,7 @@ export const POST = withAuth(async (req, auth, context?: { params: Promise<{ stu
   const result = await parentService.addParent(studentId, auth.schoolId, { phone, name, relationType });
 
   if (!result.success) {
-    const errMap: Record<string, { code: number; status: number; msg: string }> = {
+    const errMap: Record<string, { code: ErrorCodeValue; status: number; msg: string }> = {
       SAME_PHONE: { code: ErrorCode.PHONE_FORMAT_ERROR, status: 400, msg: "家长手机号不能与学生相同" },
       ALREADY_BOUND: { code: ErrorCode.ALREADY_BOUND, status: 409, msg: "该家长已绑定此学生" },
       STUDENT_NOT_FOUND: { code: ErrorCode.USER_NOT_FOUND, status: 404, msg: "学生不存在" },
