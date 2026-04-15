@@ -21,7 +21,7 @@ export function resolveActiveRole(
   requestedRole: string | undefined
 ): RoleResolveResult {
   // 确定候选角色
-  let role = requestedRole || auth.activeRole || auth.roles[0] || "";
+  const role = requestedRole || auth.activeRole || auth.roles[0] || "";
 
   if (!role) {
     return { success: false, error: "ROLE_NOT_ASSIGNED" };

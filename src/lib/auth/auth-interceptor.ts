@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { TokenService, type SessionData } from "@/domains/auth/token-service";
+import { TokenService } from "@/domains/auth/token-service";
 import { error, ErrorCode } from "@/lib/api/response";
 
 export interface AuthContext {
